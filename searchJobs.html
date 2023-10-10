@@ -1,0 +1,128 @@
+<?php
+include 'dbCon.php';
+$getKW = $_GET['keyword'];
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="<?php echo $getKW; ?> Jobs 2023 | Latest <?php echo $getKW; ?> Jobs 2023">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $getKW; ?> Jobs 2023 - Jobslalu</title>
+
+<link rel="shortcut icon" href="Image/favv.png">
+  
+<!--  Favicon -->
+<link rel="shortcut icon" href="images/favicon.png">
+  
+<!-- CSS -->
+<link rel="stylesheet" href="bootstrap-grid.css">
+<link rel="stylesheet" href="icons.css">
+<link rel="stylesheet" href="style.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap" rel="stylesheet">  
+  </head>
+  <body>
+    
+<!-- Header Starts -->
+<?php include 'Header.php' ?>
+<!-- Header Ends -->
+
+  <!-- Title Bar -->
+  <div id="titlebar" class="gradient">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12">
+			  <h2>Jobs Listing </h2>
+			  <nav id="breadcrumbs">
+				<ul>
+				  <li><a href="index.php">Home</a></li>
+				  <li>Searched Jobs Listing</li>
+				</ul>
+			  </nav>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+  <!-- Title bar ends -->
+
+
+  <!-- First Ten Jobs Block Start -->
+  <div class="col-xl-9 col-lg-8" style="margin: auto;" id="firstTenJobs">
+    <div class="utf-inner-search-section-title">
+  <h4> Search Jobs Listing Results</h4>
+</div>
+
+    <div class="utf-listings-container-part compact-list-layout margin-top-35"> 
+    <?php
+
+$fetch_data = "SELECT * FROM `jobdetail`";
+$fetch_result = mysqli_query($connection, $fetch_data);
+$rowCount = mysqli_num_rows($fetch_result);
+while($row=$fetch_result->fetch_assoc()){
+  
+?>
+
+<?php  
+
+if($rowCount>0){
+if($row["Organization"]==$getKW){
+    echo " 
+  <a href='BrowseJobDetails.php?id=<?php echo {$row["ID"]};?>' class='utf-job-listing' target='_blank'> 
+    <div class='utf-job-listing-details'> 
+    <div class='utf-job-listing-company-logo'> 
+      <img src='images/company_logo_1.png' alt=''> 
+    </div>
+    <div class='utf-job-listing-description'>
+      <span class='dashboard-status-button utf-job-status-item green'>
+         Government
+      </span>
+      <h3 class='utf-job-listing-title'>
+           {$row['Organization']};
+      </h3>
+      <div class='utf-job-listing-footer'>
+          <h4>
+            Last Date: 
+						<span class='dashboard-status-button utf-job-status-item green'>{$row["LastDate"]} </span> 
+					</h4>
+      </div>
+    </div>
+     </div>
+  </a>   
+  ";
+
+}  }  
+
+// if ($row["Organization"]!=$getKW){
+  //echo "<h3 style='text-align:center;color:green; padding-top:10px; padding-bottom:10px'>No Job Available</h3>";
+  //break;
+//}
+
+?>
+<?php
+}
+?>
+</div> 
+</div>
+<!-- First Ten Jobs Block End -->
+
+    <!-- Pagination -->
+    <div class="clearfix"></div>        
+</div>
+<br>
+
+  <!-- All Jobs Block Ends -->
+
+<!-- Footer Starts -->
+<?php include 'Footer.php' ?>
+<!-- Footer Ends -->
+
+    
+  </body>
+  </html>

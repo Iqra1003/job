@@ -1,0 +1,44 @@
+.open{
+    width: 300px;
+    color: aqua;
+    background-color: cadetblue;
+    border: 1px solid aquamarine;
+    border-radius: 25px;
+    margin-left: auto;
+    padding: 10px;
+  }
+  
+  .popcontainer{
+    background-color: #fff;
+    width: 80%;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    transition: 0.5s;
+    opacity: 0;
+    box-shadow: 0 5px 30px rgba(0,0,0,.30);
+    margin-bottom: 20px;
+  }
+  
+  .showPopup{
+    top: 55%;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .searchBar{
+    filter: blur(1px);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ClosePopup{
+    width: 100px;
+    position: absolute;
+    top: 469px;
+    left: 531px;
+  }
